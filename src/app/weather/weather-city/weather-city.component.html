@@ -1,0 +1,5 @@
+<mat-grid-list cols="5" rowHeight="2:1">
+  <mat-grid-tile class="city" *ngFor="let loc of cities" (click)="getWeather(loc)">
+    <span>{{loc}}</span>
+  </mat-grid-tile>
+</mat-grid-list>

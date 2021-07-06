@@ -1,0 +1,63 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened class="drawer">
+    <div class="drawer-content">
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <span>Weather App</span>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </mat-list-item>
+      </mat-nav-list>
+      <span class="spacer"></span>
+      <mat-card class="today-weather">
+        <mat-card-header>
+          <mat-card-title>
+            <h1>{{today}}</h1>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <ng-container *ngIf="loadingWeatherData">
+            <span>Loading...</span>
+          </ng-container>
+          <div *ngIf="!loadingWeatherData" class="weather">
+            <div *ngIf="weatherData.isDay" class="weather-widget-row">
+              <i class="fas fa-3x fa-sun sun"></i>
+            </div>
+            <div *ngIf="!weatherData.isDay" class="weather-widget-row">
+              <i class="fas fa-3x fa-moon moon"></i>
+            </div>
+            <div class="weather-widget-row cloudDiv">
+              <i class="fas fa-cloud fa-3x cloud"></i>
+            </div>
+            <div class="weather-info">
+              <span class="weather-widget-row temp_celcius">{{weatherData.temp_celcius}}°</span>
+              <span class="weather-widget-row temp_max">
+                Min: {{weatherData.temp_min}}° / Max: {{weatherData.temp_max}}°
+              </span>
+              <span class="weather-widget-row temp_feels_like">
+                Feels Like: {{weatherData.temp_feels_like}}°
+              </span>
+              <span class="weather-widget-row name">{{weatherData.name}}</span>
+              <span class="weather-widget-row humidity">
+                Humidity: {{weatherData.main.humidity}}%
+              </span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <span class="spacer"></span>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <main>
+      <app-header></app-header>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,15 @@
+:host {
+    .container {
+        height: calc(100% - 64px);
+        .temprature {
+            .temp {
+                margin-right: 30px;
+            }
+        }
+        .feels_like {
+            .feels {
+                margin-right: 20px;
+            }
+        }
+    }
+}

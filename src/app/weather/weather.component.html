@@ -1,0 +1,63 @@
+<div class="container">
+  <app-weather-city></app-weather-city>
+  <mat-toolbar>
+    <span>{{cityName}}</span>
+  </mat-toolbar>
+  <mat-accordion class="example-headers-align" multi opened>
+    <mat-expansion-panel *ngFor="let weather of weatherForecaseList" expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{getDateTime(weather.dt)}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <p>Wind: {{weather.speed}}</p>
+          <span class="spacer"></span>
+          <p>Sunrise: {{getDateTime(weather.sunrise)}}</p>
+          <span class="spacer"></span>
+          <p>Sunset: {{getDateTime(weather.sunset)}}</p>
+          <span class="spacer"></span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-card>
+        <mat-card-content>
+          <div class="weather-data">
+            <div class="temprature">
+              <mat-list>
+                <div mat-subheader>Temprature</div>
+                <mat-list-item>
+                  <span class="temp">MAX: {{weather.temp.max}}°</span>
+                  <span class="temp">MIN: {{weather.temp.min}}°</span>
+                </mat-list-item>
+              </mat-list>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="feels_like">
+              <mat-list>
+                <div mat-subheader>Feels Like</div>
+                <mat-list-item>
+                  <span class="feels">DAY: {{weather.feels_like.day}}°</span>
+                  <span class="feels">EVE: {{weather.feels_like.eve}}°</span>
+                  <span class="feels">MORN: {{weather.feels_like.morn}}°</span>
+                  <span class="feels">NIGHT: {{weather.feels_like.night}}°</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-list>
+              <div mat-subheader>Weather Condition</div>
+              <mat-list-item *ngFor="let dt of weather.weather">
+                <mat-icon matListIcon>{{dt.icon}}</mat-icon>
+                <p matLine>{{dt.description | uppercase}}</p>
+                <p matLine>{{dt.main | uppercase}}</p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>
